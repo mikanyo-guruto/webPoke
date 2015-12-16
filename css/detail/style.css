@@ -1,0 +1,219 @@
+*, h2, 
+.col-xs-12{
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    padding-left: 15px;
+}
+i {
+    padding-right: 5px;
+}
+
+/* ------------------- 
+    特性
+--------------------- */
+
+.special h2 {
+    font-size: 16px;
+}
+/* ------------------- 
+    END 特性
+--------------------- */
+
+
+/* ------------------- 
+    弱点表
+--------------------- */
+.ability {
+    
+}
+.ability table {
+    width: 500px;
+}
+.ability th,
+.ability td {
+    text-align: center;
+    width: 100px;
+}
+.ability meter {
+    width: 300px;
+}
+/* ------------------- 
+    END弱点表
+--------------------- */
+
+/* ------------------- 
+    弱点表
+--------------------- */
+.week {
+    border: 1px solid black;
+    margin: 10px 0;
+    text-align: center;
+}
+.week a {
+    display: block;
+    font-size: 16px;
+    padding: 10px 0;
+    text-decoration: none;
+    width: 100%;
+}
+.week ul li {
+	list-style: none;
+}
+.week .first {
+	float: left;
+}
+.week ul .week_details {
+	width: 100%;
+}
+/* ------------------- 
+    END 弱点表
+--------------------- */
+
+
+/* ------------------- 
+    技一覧表
+--------------------- */
+.skills h2 {
+    font-size: 18px;
+}
+.skills .glyphicon-arrow-up {
+    color: green;
+}
+.skills .glyphicon-circle-arrow-up {
+    color: skyblue;
+}
+.skills .glyphicon-gift {
+    color: pink;
+}
+.skills .glyphicon-globe {
+    color: orange;
+}
+/* ------------------- 
+    END 技一覧表
+--------------------- */
+
+
+/* XXXXXXXXXXXXXXXXXXXX
+    スマホ規格デザイン
+XXXXXXXXXXXXXXXXXXXXXX */
+@media screen and (max-width: 768px) {
+
+/* ヘッダー(ポケモン名/タイプ表示) */
+.all .name,
+.all .type {
+    height: 75px;
+}
+    
+/* ポケモン名 */
+.all .name h1 {
+    font-size: 24px;
+}
+    
+/* ------------------- 
+    タイプ
+--------------------- */
+
+.type ul {
+    margin-top: 15px;
+}
+.type ul li {
+    font-size: 18px;
+    list-style: none;
+}
+/* ------------------- 
+    END タイプ
+--------------------- */
+
+    
+/* ------------------- 
+    画像
+--------------------- */
+.img img {
+    margin-left: -20px;
+}
+/* ------------------- 
+    END 画像
+--------------------- */
+    
+    
+/* ------------------- 
+    能力
+--------------------- */
+.ability {
+    float: right;
+}
+.ability table {
+    font-size: 16px;
+    width: 100%;
+}
+.ability table th,
+.ability table td {
+    padding: 3px 0;
+}
+.ability table th {
+    text-align: left;
+    width: 35px;
+}
+.ability table td {
+	width: 35px;
+}
+
+/* XXX未XXX */
+.all .ability table td .font {
+	padding: 0 10px;
+}
+.all .ability meter {
+    width: 100%;
+}
+/* ------------------- 
+    END 能力
+--------------------- */
+    
+    
+/* ------------------- 
+    特性
+--------------------- */
+.special {
+    padding-left: 20px;
+    padding-top: 10px;
+}
+.special ul {
+    list-style: none;
+    padding-left: 10px;
+    padding-top: 5px;
+}
+/* ------------------- 
+    END 特性
+--------------------- */
+    
+    
+/* ------------------- 
+    弱点表
+--------------------- */
+.week {
+    clear: both;
+}
+/* ------------------- 
+    END 弱点表
+--------------------- */
+    
+    
+/* ------------------- 
+    技一覧表
+--------------------- */
+.skills {
+    
+}
+.skills table {
+    width: 100%;
+}
+.skills table th,
+.skills table td {
+    text-align: center;
+}
+/* ------------------- 
+    END 技一覧表
+--------------------- */

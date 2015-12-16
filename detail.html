@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <title>ポケモンDB(仮)</title>
+    
+    <link rel="stylesheet" href="css/bootstrap.min.css" >
+    <link rel="stylesheet" href="css/detail/style.css" >
+    
+    <!-- DB引用 -->
+	<script type="text/javascript">
+	function data_input(){
+		var name = location.search.substring(1, location.search.length);
+		name = unescape(name);
+		return name;
+	}
+	var name;
+	var dev_name;
+	window.onload = function(){
+		name = data_input();
+		name_develop(name);
+	};
+	</script>
+	<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/exceltest.js"></script>
+	<script type="text/javascript" src="js/d3.js"></script>
+</head>
+<body>
+
+<div class="all col-xs-12">
+
+    <div class="row">
+        <div class="col-xs-7 col-md-7 name">
+            <h1 id="name">ここに表示</h1>
+        </div>
+        <div class="col-xs-5 col-md-5 type">
+            <ul>
+                <li id="type1">タイプ1</li>
+                <li id="type2">タイプ2</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-xs-4 col-md-4 img">
+            <img id="img" src="#" alt="">
+        </div>
+        
+        <div class="col-xs-8 col-md-8 ability">
+            <table>
+                <tr>
+					<th>HP</th>
+					<td><meter id="h_m" max="255" value="h"></meter></td>
+					<td id="h" class="font"></td>
+				</tr>
+		        
+		        <tr>
+					<th>攻撃</th><td>
+					<meter id="a_m" max="190" value="35"></meter></td>
+					<td id="a" class="font"></td>
+				</tr>
+		        
+		        <tr>
+		        	<th>防御</th>
+		        	<td><meter id="b_m" max="230" value="35"></meter></td>
+		        	<td id="b" class="font"></td>
+		        </tr>
+		        
+		        <tr>
+		        	<th>特攻</th>
+		        	<td><meter id="c_m" max="194" value="35"></meter></td>
+		        	<td id="c" class="font"></td>
+		        </tr>
+		        
+		        <tr>
+		        	<th>特防</th>
+		        	<td><meter id="d_m" max="230" value="35"></meter></td>
+		        	<td id="d" class="font"></td>
+		        </tr>
+		        
+		        <tr>
+		        	<th>素早さ</th>
+		        	<td><meter id="s_m" max="180" value="35"></meter></td>
+		        	<td id="s" class="font"></td>
+		        </tr>
+		        
+		        <tr>
+		        	<th>合計</th>
+		        	<td><meter id="t_m" max="780" value="35"></meter></td>
+		        	<td id="total" class="font"></td>
+		        </tr>
+		        
+			</table>
+        </div>
+        
+        <div class="col-xs-4 special">
+            <h2><i class="glyphicon glyphicon-pushpin"></i>特性</h2>
+            <ul>
+                <li>特性1</li>
+                <li>特性2</li>
+                <li>特性3</li>
+            </ul>
+        </div>
+        
+	</div>
+	
+<!-- 弱点一覧 アコーディオン化 -->
+<div class="row">
+    <div class="accordion-group week col-xs-12">
+        <div class="accordion-heading">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#faq" href="#week">弱点表</a></div>
+            <div id="week" class="accordion-body collapse">
+                <div class="accordion-inner">
+
+                <ul class="first">
+                    <li>ノーマル</li><li class="week_details"><meter max="100" value="50"></meter><br>1倍</li>
+                    <li>ノーマル</li><li class="week_details"><meter max="100" value="50"></meter><br>1倍</li>
+                    <li>ノーマル</li><li class="week_details"><meter max="100" value="50"></meter><br>1倍</li>
+                    <li>ノーマル</li><li class="week_details"><meter max="100" value="50"></meter><br>1倍</li>
+                    <li>ノーマル</li><li class="week_details"><meter max="100" value="50"></meter><br>1倍</li>
+
+                    <li>ノーマル</li><li class="week_details"><meter max="100" value="50"></meter><br>1倍</li>
+                    <li>ノーマル</li><li class="week_details"><meter max="100" value="50"></meter><br>1倍</li>
+                    <li>ノーマル</li><li class="week_details"><meter max="100" value="50"></meter><br>1倍</li>
+                    <li>ノーマル</li><li class="week_details"><meter max="100" value="50"></meter><br>1倍</li>
+                    <li>ノーマル</li><li class="week_details"><meter max="100" value="50"></meter><br>1倍</li>
+
+                    <li>ノーマル</li><li class="week_details"><meter max="100" value="50"></meter><br>1倍</li>
+                    <li>ノーマル</li><li class="week_details"><meter max="100" value="50"></meter><br>1倍</li>
+                    <li>ノーマル</li><li class="week_details"><meter max="100" value="50"></meter><br>1倍</li>
+                </ul>
+                <ul>
+                    <li>ノーマル</li><li class="week_details"><meter max="100" value="50"></meter><br>1倍</li>
+                    <li>ノーマル</li><li class="week_details"><meter max="100" value="50"></meter><br>1倍</li>
+                    <li>ノーマル</li><li class="week_details"><meter max="100" value="50"></meter><br>1倍</li>
+                    <li>ノーマル</li><li class="week_details"><meter max="100" value="50"></meter><br>1倍</li>
+                    <li>ノーマル</li><li class="week_details"><meter max="100" value="50"></meter><br>1倍</li>
+                    <li>ノーマル</li><li class="week_details"><meter max="100" value="50"></meter><br>1倍</li>
+
+                    <li>ノーマル</li><li class="week_details"><meter max="100" value="50"></meter><br>1倍</li>
+                    <li>ノーマル</li><li class="week_details"><meter max="100" value="50"></meter><br>1倍</li>
+                    <li>ノーマル</li><li class="week_details"><meter max="100" value="50"></meter><br>1倍</li>
+                    <li>ノーマル</li><li class="week_details"><meter max="100" value="50"></meter><br>1倍</li>
+                    <li>ノーマル</li><li class="week_details"><meter max="100" value="50"></meter><br>1倍</li>
+
+                    <li>ノーマル</li><li class="week_details"><meter max="100" value="50"></meter><br>1倍</li>
+                    <li>ノーマル</li><li class="week_details"><meter max="100" value="50"></meter><br>1倍</li>
+                    <li>ノーマル</li><li class="week_details"><meter max="100" value="50"></meter><br>1倍</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 弱点表終了 -->
+   
+<!-- 技一覧表STR -->
+<div class="container skills col-xs-12">
+    <h2><i class="fa glyphicon glyphicon-arrow-up"></i>レベル技</h2>
+    <table class="table">
+        <tr>
+            <th>Lv</th><th>技名</th><th>威力</th><th>命中</th><th>効果</th>
+        </tr>
+        <tr>
+            <td>1</td><td>たいあたり</td><td>40</td><td>100</td><td>通常攻撃</td>
+        </tr>
+        <tr>
+            <td>1</td><td>しっぽをふる</td><td>/</td><td>100</td><td>相手の防御ランクを1段下げる</td>
+        </tr>
+        <tr>
+            <td>2</td><td>ひっかく</td><td>40</td><td>100</td><td>通常攻撃</td>
+        </tr>
+    </table>
+    
+    <h2><i class="fa glyphicon glyphicon-circle-arrow-up"></i>技マシン</h2>
+    <table class="table">
+        <tr>
+            <th>No</th><th>技名</th><th>威力</th><th>命中</th><th>効果</th>
+        </tr>
+        <tr>
+            <td>3</td><td>たいあたり</td><td>40</td><td>100</td><td>通常攻撃</td>
+        </tr>
+        <tr>
+            <td>4</td><td>しっぽをふる</td><td>/</td><td>100</td><td>相手の防御ランクを1段下げる</td>
+        </tr>
+        <tr>
+            <td>21</td><td>ひっかく</td><td>40</td><td>100</td><td>通常攻撃</td>
+        </tr>
+    </table>
+    
+    <h2><i class="fa glyphicon glyphicon-gift"></i>教え技</h2>
+    <table class="table">
+        <tr>
+            <th>No</th><th>技名</th><th>威力</th><th>命中</th><th>効果</th>
+        </tr>
+        <tr>
+            <td>3</td><td>たいあたり</td><td>40</td><td>100</td><td>通常攻撃</td>
+        </tr>
+        <tr>
+            <td>4</td><td>しっぽをふる</td><td>/</td><td>100</td><td>相手の防御ランクを1段下げる</td>
+        </tr>
+        <tr>
+            <td>21</td><td>ひっかく</td><td>40</td><td>100</td><td>通常攻撃</td>
+        </tr>
+    </table>
+    
+    <h2><i class="fa glyphicon glyphicon glyphicon-globe"></i>タマゴ技</h2>
+    <table class="table">
+        <tr>
+            <th>No</th><th>技名</th><th>威力</th><th>命中</th><th>効果</th>
+        </tr>
+        <tr>
+            <td>3</td><td>たいあたり</td><td>40</td><td>100</td><td>通常攻撃</td>
+        </tr>
+        <tr>
+            <td>4</td><td>しっぽをふる</td><td>/</td><td>100</td><td>相手の防御ランクを1段下げる</td>
+        </tr>
+        <tr>
+            <td>21</td><td>ひっかく</td><td>40</td><td>100</td><td>通常攻撃</td>
+        </tr>
+    </table>
+    
+</div>
+<!-- 技一覧表END -->
+    
+</div>
+
+</body>
+
+</html>
