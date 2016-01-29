@@ -1,17 +1,17 @@
 <html>
 <head>
-<title></title>
+<title>ポケモンDB</title>
 <meta charset="UTF-8">
 <script type="text/javascript">
 function data_send(){
-	location.href = "detail.html?" + escape(document.develop.name.value);
+	location.href = "detail.html?" + document.develop.name.value;
 }
 </script>
 </head>
 <body>
-<h1>仮タイトル</h1>
+<h1>ポケモンDB</h1>
 <form name="develop">
-	<input type="text" name="name" size="25" value="">
+	<input type="text" name="name" size="25" value="リザードン">
 	<input type="button" value="検索" onclick="data_send();">
 </form>
 

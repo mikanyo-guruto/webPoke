@@ -1,6 +1,4 @@
-*, h2, 
-.col-xs-12{
-    margin: 0;
+.col-xs-4, .col-xs-5, .col-xs-7 {
     padding: 0;
 }
 
@@ -9,6 +7,25 @@ h1 {
 }
 i {
     padding-right: 5px;
+}
+
+.return {
+    border: 1px solid;
+    text-align: center;
+    width: 100%;
+}
+.return a {
+    display: block;
+    padding: 5px 0;
+    text-decoration: none;
+}
+.return a:active,
+.return a:link,
+.return a:visited {
+    color: dodgerblue;
+}
+.return a:hover {
+    color: deepskyblue;
 }
 
 /* ------------------- 
@@ -24,13 +41,123 @@ i {
 
 
 /* ------------------- 
-    弱点表
+    タイプ
+--------------------- */
+.type {
+    width: auto;
+}
+.type ul {
+    margin-top: 15px;
+}
+.type ul li {
+    border-radius: 10px;
+    color: white;
+    display: inline;
+    font-size: 18px;
+    list-style: none;
+    padding: 2px 10px;
+}
+.type ul li:not(:first-child) {
+    margin-top: 2px;
+}
+
+/*色情報*/
+.normal {
+    color: black;
+    background-color: white;
+}
+.flame {
+    background-color: red;
+}
+.water {
+    background-color: blue;
+}
+.elect {
+    background-color: yellow;
+}
+.grass {
+    background-color: green;
+}
+.ice {
+    background-color: skyblue;
+}
+.poison {
+    background-color: purple;
+}
+.ground {
+    background-color: tan;
+}
+.flight {
+    background-color: #80c4ff;
+}
+.psi {
+    background-color: pink;
+}
+.insect {
+    background-color: darkkhaki;
+}
+.rock {
+    background-color: brown;
+}
+.ghost {
+    background-color: navy;
+}
+.dragon {
+    background-color: royalblue;
+}
+.evil {
+    color: white;
+    background-color: black;
+}
+.steel {
+    background-color: silver;
+}
+.fairy {
+    background-color: pink;
+}
+
+
+/* ------------------- 
+    END タイプ
+--------------------- */
+
+
+/* ------------------- 
+    メガシンカ
+--------------------- */
+.mega {
+	border: 1px solid;
+    text-align: center;
+}
+.mega a {
+	display: block;
+	padding: 5px 0;
+	text-decoration: none;
+}
+/* ------------------- 
+    END メガシンカ
+--------------------- */
+
+
+/* ------------------- 
+    画像
+--------------------- */
+.img img {
+	text-align: center;
+}
+/* ------------------- 
+    END 画像
+--------------------- */
+
+
+/* ------------------- 
+    種族地表
 --------------------- */
 .ability {
-    
 }
 .ability table {
-    width: 500px;
+	height: 200px;
+    width 500px;
 }
 .ability th,
 .ability td {
@@ -40,9 +167,29 @@ i {
 .ability meter {
     width: 300px;
 }
+#ha {
+    color: orange;
+}
 /* ------------------- 
-    END弱点表
+    END 種族地表
 --------------------- */
+
+
+/*-------------------- 
+	特性表
+--------------------- */
+.special {
+}
+.special ul {
+	list-style: none;
+}
+.special li {
+	display: inline-block;
+}
+/*-------------------- 
+	END 特性表
+--------------------- */
+
 
 /* ------------------- 
     弱点表
@@ -51,6 +198,7 @@ i {
     border: 1px solid black;
     margin: 10px 0;
     text-align: center;
+    width: 100%;
 }
 .week a {
     display: block;
@@ -74,25 +222,22 @@ i {
 
 
 /* ------------------- 
-    技一覧表
+    進化表
 --------------------- */
-.skills h2 {
-    font-size: 18px;
+.advance {
+	margin: 0 auto;
+	width: auto;
 }
-.skills .glyphicon-arrow-up {
-    color: green;
+.advance ul {
+	padding-left: 0;
+	text-align: center;
 }
-.skills .glyphicon-circle-arrow-up {
-    color: skyblue;
-}
-.skills .glyphicon-gift {
-    color: pink;
-}
-.skills .glyphicon-globe {
-    color: orange;
+.advance li {
+	font-size: 16px;
+    list-style: none;
 }
 /* ------------------- 
-    END 技一覧表
+    END 進化表
 --------------------- */
 
 
@@ -102,27 +247,41 @@ XXXXXXXXXXXXXXXXXXXXXX */
 @media screen and (max-width: 768px) {
 
 /* ヘッダー(ポケモン名/タイプ表示) */
-.all .name,
-.all .type {
-    height: 75px;
+.container .name,
+.container .type {
+    height: 52px;
 }
     
-/* ポケモン名 */
-.all .name h1 {
+/* ------------------- 
+    ポケモン名
+--------------------- */
+.name h1 {
     font-size: 24px;
+    margin-top: 15px;
 }
+/* ------------------- 
+    END ポケモン名
+--------------------- */
     
 /* ------------------- 
     タイプ
 --------------------- */
-
+.type {
+    width: auto;
+}
 .type ul {
-    margin-top: 15px;
+    display: block;
+    margin-top: 5px;
+    padding-left: 0;
+    text-align: center;
 }
 .type ul li {
-    font-size: 18px;
-    list-style: none;
+    display: block;
+    font-size: 16px;
+    text-align: center;
+    width: 100px;
 }
+
 /* ------------------- 
     END タイプ
 --------------------- */
@@ -131,8 +290,9 @@ XXXXXXXXXXXXXXXXXXXXXX */
 /* ------------------- 
     画像
 --------------------- */
-.img img {
-    margin-left: -20px;
+
+.img p {
+    text-align: center;
 }
 /* ------------------- 
     END 画像
@@ -160,12 +320,10 @@ XXXXXXXXXXXXXXXXXXXXXX */
 .ability table td {
 	width: 35px;
 }
-
-/* XXX未XXX */
-.all .ability table td .font {
+.ability table td .font {
 	padding: 0 10px;
 }
-.all .ability meter {
+.ability meter {
     width: 100%;
 }
 /* ------------------- 
@@ -177,13 +335,12 @@ XXXXXXXXXXXXXXXXXXXXXX */
     特性
 --------------------- */
 .special {
-    padding-left: 20px;
-    padding-top: 10px;
+}
+.special h2 {
+    padding-left: 10px;
 }
 .special ul {
-    list-style: none;
-    padding-left: 10px;
-    padding-top: 5px;
+    padding-left: 5px;
 }
 /* ------------------- 
     END 特性
@@ -200,20 +357,3 @@ XXXXXXXXXXXXXXXXXXXXXX */
     END 弱点表
 --------------------- */
     
-    
-/* ------------------- 
-    技一覧表
---------------------- */
-.skills {
-    
-}
-.skills table {
-    width: 100%;
-}
-.skills table th,
-.skills table td {
-    text-align: center;
-}
-/* ------------------- 
-    END 技一覧表
---------------------- */
