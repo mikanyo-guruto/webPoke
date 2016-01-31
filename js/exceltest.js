@@ -1,7 +1,7 @@
 function name_develop(name_diff) {
 	//---ポケモンの名前検索---
 	d3.csv("pokedb.csv", function(data) {
-		var no = name_judge(data, name_diff);
+		var no = name_judge(name_diff);
 		
 		//図鑑情報と適合しなかった場合
     	if(no == "ERROR"){
@@ -51,10 +51,16 @@ function name_develop(name_diff) {
 		                    if(i == 2){
 		                        mega2 = no+i;
 								link_generation("mega2", mega2);
+								var mega_style2 = document.getElementById('mega2');
+		                    	mega_style2.style.borderWidth = "1px";
+		                    	mega_style2.style.borderStyle = "solid";
 		                    }
 		                    else{
 		                        mega1 = no+i;
 		                    	link_generation("mega1", mega1);
+		                    	var mega_style1 = document.getElementById('mega1');
+		                    	mega_style1.style.borderWidth = "1px";
+		                    	mega_style1.style.borderStyle = "solid";
 		                    }
 		                }
 		            }else{
@@ -81,41 +87,108 @@ function name_develop(name_diff) {
             
 
             // ---タイプ処理---
-            var type_select = [
-                "ノーマル", "ほのお", "みず", "でんき", "くさ",
-                "こおり", "かくとう", "どく", "じめん", "ひこう",
-                "エスパー", "むし", "いわ", "ゴースト", "ドラゴン",
-                "あく", "はがね", "フェアリー"
+            var type_name = [
+                "ノーマル", "かくとう", "どく", "じめん", "ひこう", 
+                "むし", "いわ", "ゴースト", "はがね", "ほのお", 
+                "みず", "でんき", "くさ", "こおり", "エスパー", 
+                "ドラゴン", "あく", "フェアリー"
             ];
             
-            //タイプによって着色
+            // タイプによって着色
             var type_class = [
-            	"normal", "flame", "water", "elect", "grass",
-            	"ice", "fight", "poison", "ground", "flight",
-            	"psi", "insect", "rock", "ghost", "dragon",
-            	"evil", "steel", "fairy"
+            	"normal", "fight", "poison", "ground", "flight", 
+            	"insect", "rock", "ghost", "steel", "flame", 
+            	"water", "elect", "grass", "ice", "psi",
+            	"dragon", "evil", "fairy"
             ];
-			
+
+            // 弱点表
+			var type_week = [
+					// 普,  闘, 毒, 地,  飛, 虫, 岩, 霊,  鋼, 炎, 水, 電,  草, 氷,  超, 龍, 悪, 妖
+				/*普*/["1","2","1","1","1","1","1","0","1","1","1","1","1","1","1","1","1","1"],
+				/*闘*/["1","1","1","1","2","0.5","0.5","1","1","1","1","1","1","1","2","1","0.5","2"],
+				/*毒*/["1","0.5","0.5","2","1","0.5","1","1","1","1","1","1","0.5","1","2","1","1","0.5"],
+				/*地*/["1","1","0.5","1","1","1","0.5","1","1","1","2","0","2","2","1","1","1","1"],
+				/*飛*/["1","0.5","1","0","1","0.5","2","1","1","1","1","2","0.5","2","1","1","1","1"],
+				/*虫*/["1","0.5","1","0.5","2","1","2","1","1","2","1","1","0.5","1","1","1","1","1"],
+				/*岩*/["0.5","2","0.5","2","0.5","1","1","1","2","0.5","2","1","2","1","1","1","1","1"],
+				/*霊*/["0","0","0.5","1","1","0.5","1","2","1","1","1","1","1","1","1","1","2","1"],
+				/*鋼*/["0.5","2","0","2","0.5","0.5","0.5","1","0.5","2","1","1","0.5","0.5","0.5","0.5","1","0.5"],
+				/*炎*/["1","1","1","2","1","0.5","2","1","0.5","0.5","2","1","0.5","0.5","1","1","1","0.5"],
+				/*水*/["1","1","1","1","1","1","1","1","0.5","0.5","0.5","2","2","0.5","1","1","1","1"],
+				/*電*/["1","1","1","2","0.5","1","1","1","0.5","1","1","0.5","1","1","1","1","1","1"],
+				/*草*/["1","1","2","0.5","2","2","1","1","1","2","0.5","0.5","0.5","2","1","1","1","1"],
+				/*氷*/["1","2","1","1","1","1","2","1","2","2","1","1","1","1","0.5","1","2","1"],
+				/*超*/["1","0.5","1","1","1","2","1","2","1","1","1","1","1","1","0.5","1","2","1"],
+				/*龍*/["1","2","1","1","1","1","1","1","1","0.5","0.5","0.5","0.5","2","1","2","1","2"],
+				/*悪*/["1","2","1","1","1","2","1","0.5","1","1","1","1","1","1","0","1","0.5","2"],
+				/*妖*/["1","0.5","2","1","1","0.5","1","1","2","1","1","1","1","1","1","0","0.5","1"]
+			];
+
 			var type_style = [];
-            var i;
-            var class_num;
             var count=0;
-            
+            var type_point = [];
+            /*
+				-タイプの名前とクラスを結び付ける-
+				type = DBのタイプ名
+				type_name = タイプの日本語名
+				type_class = クラス名
+				type_style = 適応させるクラス名
+				count = 複合タイプの場合
+				type_point = タイプの座標(weekに使用)
+            */
             do{
-		    	for(i=0; i<type_select.length; i++){
-					if(type_select[i] === type[count]){
-						class_num = i;
-						//classの名前として送る"type_style"
-						//タイプによるクラス名"type_class"
-						//type_selectで一致した配列番号を格納"class_num"
-						//countはタイプ2があった場合
-						type_style[count] = type_class[class_num];
+		    	for(i=0; i<type_name.length; i++){
+					if(type_name[i] === type[count]){
+						type_style[count] = type_class[i];
+						// 相性計算で使用
+						type_point[count] = i;
 						break;
 					}
 				}
 				count++;
             }while(type[1] && count <= 1);
             
+            /*
+				・無効が最も優先される
+					・2倍と半減が一緒にあると1倍になる
+					・2倍が2つあると4倍になる
+					・半減が2つあると1/4倍になる
+						・片方が2倍だと2倍になる
+						・片方が半減だと半減になる
+            */
+            var type_week_view = {};
+            var t_w_t1 = {};
+            var t_w_t2 = {};
+            var len_max=0;
+
+            // タイプ1の設定
+            setWeekArray(t_w_t1, type_point[0]);
+            // タイプ2の設定
+            if(type[1]){
+				setWeekArray(t_w_t2, type_point[1]);
+			}
+            // 表示する連想配列に代入
+			for(var t1_key in t_w_t1){
+				type_week_view[t1_key] = t_w_t1[t1_key];
+			}
+			for(var t2_key in t_w_t2){
+				// 無効があった場合
+				if(t_w_t2[t2_key] == 0){
+					type_week_view[t2_key] = t_w_t2[t2_key];
+				}
+				// タイプ1にないタイプがあった場合
+				if(type_week_view[t2_key] == undefined){
+					type_week_view[t2_key] = t_w_t2[t2_key];
+					t_w_t2[t2_key] = 1;
+				}
+				// 他の計算
+				type_week_view[t2_key] = type_week_view[t2_key] * t_w_t2[t2_key];
+				// 等倍があれば削除
+				if(type_week_view[t2_key] == 1){
+					delete type_week_view[t2_key];
+				}
+			}
             // ---END タイプ処理---
             
 			//表示
@@ -124,24 +197,19 @@ function name_develop(name_diff) {
     		document.getElementById("type1").className = type_style[0];
     		document.getElementById("type2").innerHTML = type[1];
     		document.getElementById("type2").className = type_style[1];
-    		document.getElementById("h").innerHTML = h;
-			document.getElementById("h_m").value = h;
-    		document.getElementById("a").innerHTML = a;
-			document.getElementById("a_m").value = a;
-    		document.getElementById("b").innerHTML = b;
-			document.getElementById("b_m").value = b;
-    		document.getElementById("c").innerHTML = c;
-			document.getElementById("c_m").value = c;
-    		document.getElementById("d").innerHTML = d;
-			document.getElementById("d_m").value = d;
-    		document.getElementById("s").innerHTML = s;
-			document.getElementById("s_m").value = s;
-    		document.getElementById("total").innerHTML = total;
-			document.getElementById("t_m").value = total;
+    		link_ability("h", h);
+    		link_ability("a", a);
+    		link_ability("b", b);
+    		link_ability("c", c);
+    		link_ability("d", d);
+    		link_ability("s", s);
+    		link_ability("total", total);
             document.getElementById("sp1").innerHTML = sp1;
             document.getElementById("sp2").innerHTML = sp2;
             document.getElementById("ha").innerHTML = ha;
             
+
+
             if(ad1 != null){
 				link_generation("ad1", ad1);
 				document.getElementById("ad1_span").innerHTML = "↓";
@@ -175,6 +243,33 @@ function name_develop(name_diff) {
     	}
 
     	/*
+			-csvファイルから名前を検索-
+			[name_diff]に比較する名前を入力
+    	*/
+    	function name_judge(name_diff) {
+			no = "ERROR";
+			for(var i=0; i<data.length; i++){
+				if(data[i].Name == name_diff){
+		            //配列のindex番号を取得
+		            //ポケモンのNOを取得した場合、上の処理で配列の番号を見てしまうので違う場所を参照してしまう
+					no = data.indexOf(data[i]);
+					break;
+				}
+			}
+			return no;
+		}
+
+		/*
+			-能力の数値のリンクを出力-
+			[id]に出力先を入力
+			[num]に数値を入力
+		*/
+		function link_ability(id, num){
+			document.getElementById(id).innerHTML = num;
+			document.getElementById(id+"_m").value = num;
+		}
+
+    	/*
     		-指定したポケモンのリンクを出力-
 			[id]に出力するidを入力
 			[val]にリンクさせたいポケモンのidを入力
@@ -184,20 +279,35 @@ function name_develop(name_diff) {
 			id_link.href = "detail.html?" + data[val].Name;
 			document.getElementById(id).innerHTML = data[val].Name;
 		}
-		
+
+		/*
+			-弱点の配列をセット-
+			[name]に変数名を入力
+			[count]にフラグの入力
+		*/
+		function setWeekArray(name, count){
+			for(i=0; i<type_week.length; i++){
+				// 等倍ではなかったら
+				if(type_week[count][i] != 1){
+					// タイプの名前 : 倍率
+					name[type_name[i]] = type_week[count][i];
+				}
+			}
+			return name;
+		}
+
+		/*
+			-キャッシュの要素数を取得-
+			[ary]に連想配列を入力
+		*/
+		function getAryLen(ary){
+			var s=0;
+			for(var t in ary){
+				s++;
+			}
+			return s;
+		}
 	});
 }
 
-function name_judge(ary, name_diff) {
-	no = "ERROR";
-	for(var i=0; i<ary.length; i++){
-		if(ary[i].Name == name_diff){
-            //配列のindex番号を取得
-            //ポケモンのNOを取得した場合、上の処理で配列の番号を見てしまうので違う場所を参照してしまう
-			no = ary.indexOf(ary[i]);
-			break;
-		}
-	}
-	return no;
-}
 
