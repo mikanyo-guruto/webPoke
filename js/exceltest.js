@@ -189,14 +189,24 @@ function name_develop(name_diff) {
 					delete type_week_view[t2_key];
 				}
 			}
+			/*未実装
+			// 名前を整理
+			for(var key in type_week_view){
+				alert(type_week_view[0]);
+			}
+			console.log(type_week_view);
+			*/
             // ---END タイプ処理---
             
 			//表示
+			var link_type1 = document.getElementById("type1");
+			var link_type2 = document.getElementById("type2");
+
     		document.getElementById("name").innerHTML = name;
-    		document.getElementById("type1").innerHTML = type[0];
-    		document.getElementById("type1").className = type_style[0];
-    		document.getElementById("type2").innerHTML = type[1];
-    		document.getElementById("type2").className = type_style[1];
+    		link_type1.innerHTML = type[0];
+    		link_type1.className = type_style[0];
+    		link_type2.innerHTML = type[1];
+    		link_type2.className = type_style[1];
     		link_ability("h", h);
     		link_ability("a", a);
     		link_ability("b", b);
@@ -209,7 +219,49 @@ function name_develop(name_diff) {
             document.getElementById("ha").innerHTML = ha;
             
 
+            // 弱点表
+            var weekId = document.getElementById("week_detail");
+            var weekName = null;
+            var weekMeVal = null;
+            var weekMeMax = 4;
+            // meterの最適領域の計算は、以上では無くより大きい
+			var weekMeHigh = 3.9;
+			var weekMeLow = 1.9;
+			var weekMeOpt = 1;
 
+            for(key in type_week_view){
+            	// リストとメータータグの用意
+            	var weekLi = document.createElement('li');
+            	var weekMe = document.createElement('meter');
+
+            	// 名前の入れ込み
+            	weekName = document.createTextNode(key);
+            	weekMeVal = document.createTextNode(type_week_view[key]+"倍");
+
+            	// メーターの値を代入
+            	weekMe.value = type_week_view[key];
+            	weekMe.max = weekMeMax;
+            	weekMe.high = weekMeHigh;
+            	weekMe.low = weekMeLow;
+            	weekMe.optimum = weekMeOpt;
+
+            	// リストタグに要素を代入
+            	weekLi.appendChild(weekName);
+            	weekLi.appendChild(document.createElement('br'));
+            	weekLi.appendChild(weekMe);
+            	weekLi.appendChild(document.createElement('br'));
+            	weekLi.appendChild(weekMeVal);
+
+            	/*今後使い道があれば
+            	if(type_week_view[key] >= 2) {
+            		weekLi.className = 'danger';
+            	}
+            	*/
+            	// 表示するIDに代入
+            	weekId.appendChild(weekLi);
+            }
+
+            // 進化の段階
             if(ad1 != null){
 				link_generation("ad1", ad1);
 				document.getElementById("ad1_span").innerHTML = "↓";
@@ -217,14 +269,12 @@ function name_develop(name_diff) {
 	        if(ad2 != null){
 				link_generation("ad2", ad2);
 				document.getElementById("ad2_span").innerHTML = "↓";
-				
 			}
 			if(ad3 != null){
 				link_generation("ad3", ad3);
 			}
 
-			var link = document.getElementById("link");
-            link.href = "http://wiki.ポケモン.com/wiki/" + pkwiki_link;
+			
             
 			//画像の入れ込み
 			
@@ -240,6 +290,10 @@ function name_develop(name_diff) {
 			}
 
 			document.getElementById("img").src = "./gif/" + img_no + mega_img_no +".gif";
+
+			// ポケモンwikiへのリンク
+			var link = document.getElementById("link");
+            link.href = "http://wiki.ポケモン.com/wiki/" + pkwiki_link;
     	}
 
     	/*

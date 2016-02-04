@@ -356,9 +356,23 @@ XXXXXXXXXXXXXXXXXXXXXX */
 /* ------------------- 
     弱点表
 --------------------- */
-.week {
+.week .first {
     clear: both;
 }
+
+.week ul {
+    margin: 0 auto;
+    padding-left: 0;
+    width: auto;
+}
+
+.week ul li {
+    display: inline-block;
+    margin: 0 auto;
+    text-align: center;
+    width: 80px;
+}
+
 /* ------------------- 
     END 弱点表
 --------------------- */
